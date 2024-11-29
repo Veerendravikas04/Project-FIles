@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <script>
+        // Function to refresh the page
+        function refreshPage() {
+            if (!sessionStorage.getItem('hasVisited')) {
+                sessionStorage.setItem('hasVisited', 'true');
+                location.reload();
+            }
+        }
+
+        // Handle browser navigation (back/forward) and key presses
+        function handleNavigation() {
+            sessionStorage.removeItem('hasVisited');
+            refreshPage();
+        }
+
+        window.onload = function() {
+            // Refresh on page load
+            refreshPage();
+            
+            // Handle navigation via browser buttons (back/forward)
+            window.addEventListener('popstate', handleNavigation);
+            
+            // Handle arrow key presses
+            document.addEventListener('keydown', function(event) {
+                if (event.key.startsWith('Arrow')) {
+                    refreshPage();
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <form method="post" action="/home-page">
+        <label><strong>Email</strong></label><br>
+        <input type="email" name="email" placeholder="Enter your email" required/><br>
+        
+        <label><strong>Password</strong></label><br>
+        <input type="password" name="password" placeholder="Enter your password" required/><br>
+        <input type="submit" name="submit" value="Submit" />
+    </form>
+    <% if (typeof email !== 'undefined') { %>
+        <h1>@<%= email %> email is already exists</h1>
+    <% } %>
+</body>
+</html>

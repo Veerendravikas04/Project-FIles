@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Details</title>
+    <link rel="stylesheet" type="text/css" href="/style3.css">
+</head>
+<body>
+    <div class="container">
+        <form method="post" action="/posts/get">
+            <label for="postId">Enter Post ID:</label>
+            <input type="number" id="postId" name="number" required />
+            <button type="submit">Submit</button>
+        </form>
+        <div class="post-details">
+            <% if (typeof post !== 'undefined') { %>
+                <h2>Post Details</h2>
+                <strong class="username">@<%= post.username %></strong><br>
+                <p><%= post.content %></p>
+            <% } else if (typeof error !== 'undefined') { %>
+                <h2><%= error %></h2>
+            <% } %>
+            <button><a href="/posts">Back to Posts</a></button>
+        </div>
+    </div>
+</body>
+</html>

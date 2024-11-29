@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Employee Data</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>SSN</th>
+                    <th>Birth Date</th>
+                    <th>Address</th>
+                    <th>Gender</th>
+                    <th>Salary</th>
+                    <th>Supervisor SSN</th>
+                    <th>Department Number</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% employees.forEach(employee => { %>
+                    <tr>
+                        <td><%= employee.fname %></td>
+                        <td><%= employee.mname %></td>
+                        <td><%= employee.lname %></td>
+                        <td><%= employee.ssn %></td>
+                        <td><%= employee.bdate %></td>
+                        <td><%= employee.address %></td>
+                        <td><%= employee.gender %></td>
+                        <td><%= employee.salary %></td>
+                        <td><%= employee.superssn || 'Null' %></td>
+                        <td><%= employee.dno || 'Null' %></td>
+                        <td>
+                            <form method="post" action="/update/<%= employee.ssn %>">
+                                <button type="submit">Edit</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

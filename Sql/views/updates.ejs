@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Salary</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-color: #f4f7f6;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        input[type="password"], 
+        input[type="text"], 
+        input[type="submit"] {
+            margin-bottom: 15px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input[type="password"], 
+        input[type="text"] {
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        h2 {
+            color: #e74c3c;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update the Salary of <%= employee.fname %></h1>
+        <h3>Current Salary: $<%= employee.salary %></h3>
+        
+        <form action="/update-salary/<%= employee.ssn %>" method="POST">
+            <label for="password">Enter Your Password:</label>
+            <input type="password" id="password" name="password" required />
+            <input type="submit" value="Submit"/>
+        </form>
+        
+        <% if (!k && count > 0) { %>
+            <h2>Password is Incorrect</h2>
+        <% } else if (k) { %>
+            <form action="/salary-submited/<%= employee.ssn %>" method="post">
+                <label for="salary">Update the Salary:</label>
+                <input type="text" id="salary" name="salary" placeholder="$<%= employee.salary %>" required />
+                <input type="submit" value="Update Salary"/>
+            </form>
+        <% } %>
+    </div>
+</body>
+</html>

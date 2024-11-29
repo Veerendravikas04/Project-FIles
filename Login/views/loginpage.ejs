@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script>
+        window.onload = function() {
+            if (!sessionStorage.getItem('refreshed')) {
+                sessionStorage.setItem('refreshed', 'true');
+                location.reload();
+            }
+        };
+    </script>
+</head>
+<body>
+    <form method="post" action="/login-page">
+        <label><strong>Email</strong></label><br>
+        <input type="email" name="email" placeholder="Enter your email" required/><br>
+        
+        <label><strong>Password</strong></label><br>
+        <input type="password" name="password" placeholder="Enter your password" required/><br>
+        <input type="submit" name="submit" value="Submit" />
+    </form>
+    <div>
+        <div>
+            <% if (loginError) { %>
+                <h2><%= loginError %></h2>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
